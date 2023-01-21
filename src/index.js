@@ -1,3 +1,8 @@
-import weatherData from './modules/weatherData';
+import './style.css';
+import { searchBtnEL } from './modules/eventListerners';
+import { loadPage } from './modules/displayManager';
 
-weatherData('Luebeck').then((data) => console.log(data));
+const htmlContainer = document.querySelector('#content');
+
+loadPage(htmlContainer);
+searchBtnEL();

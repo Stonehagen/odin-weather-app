@@ -1,0 +1,134 @@
+:root {
+  --backgroundColor: rgb(65, 57, 76);
+  --highlight: rgb(227, 150, 35);
+  --higherHighlight: rgb(212, 98, 67);
+  --subtileBackground: rgb(165, 184, 219);
+  --subtilerBackground: rgb(55, 46, 69);
+  --highlightColor: rgb(80, 161, 196);
+}
+
+body {
+  background-color: var(--backgroundColor);
+  color: var(--backgroundColor);
+  margin: 0;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#content {
+  display: grid;
+  justify-items: center;
+}
+
+.header {
+  width: 500px;
+  height: 160px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 24px;
+  justify-items: center;
+  column-gap: 5px;
+}
+
+.header h1 {
+  font-size: 4em;
+  grid-column: 1/3;
+  margin-bottom: 0;
+  color: var(--highlight)
+}
+
+.header h1 span {
+  color: var(--higherHighlight)
+}
+
+.header input {
+  width: 250px;
+  justify-self: end;
+  border-radius: 12px 0 0 12px;
+  border: none;
+  padding-left: 10px;
+  background-color: var(--subtileBackground);
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.header input:focus {
+  outline: none;
+  background-color: var(--highlightColor);
+}
+
+.header button {
+  padding-left: 0;
+  width: 100px;
+  justify-self: start;
+  border-radius: 0 12px 12px 0;
+  border: none;
+  background-color: var(--subtileBackground);
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.header button:hover {
+  cursor: pointer;
+  background-color: var(--highlightColor);
+}
+
+.forecast {
+  width: 500px;
+  height: 650px;
+}
+
+.forecastTable {
+  display: grid;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 5px;
+}
+
+.forecast h2 {
+  color: var(--highlight);
+}
+
+.forecast li {
+  color: var(--highlight);
+  display: grid;
+  grid-template-columns: 75px 1fr;
+  justify-items: center;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--subtilerBackground);
+}
+
+.houers-container {
+  display: grid;
+  width: 100%;
+  height: 70px;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.forecast h4 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 1.2em;
+  color: (var(--highlightColor));
+}
+
+.forecast h2 {
+  text-align: center;
+  font-size: 3em;
+  text-transform: uppercase;
+}
+
+.forecast h2::first-letter {
+  color: var(--higherHighlight);
+}
+
+.day {
+  font-size: 1.5em;
+  color: var(--subtileBackground);
+}

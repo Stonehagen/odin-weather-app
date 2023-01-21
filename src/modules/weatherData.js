@@ -21,7 +21,7 @@ export default async (search) => {
   const url = (lat, lon) =>
     // eslint-disable-next-line implicit-arrow-linebreak
     'http://api.openweathermap.org/data/2.5/forecast' +
-    `?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    `?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
 
   const latLon = await getCoordinates(getLocation(search));
   const data = await fetchData(url(latLon.lat, latLon.lon));
