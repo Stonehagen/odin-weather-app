@@ -99,9 +99,11 @@ const getForecastTable = (forecast) => {
 export const loadForecast = (forecast) => {
   const container = document.querySelector('.forecast');
   container.innerHTML = '';
-  const htmlForecastLocation = document.createElement('h2');
-  htmlForecastLocation.innerHTML = forecast.city.name;
+  const htmlForecastLocation = htmlCreateElement(
+    'h2',
+    'forecast-city',
+    forecast.city.name,
+  );
   container.appendChild(htmlForecastLocation);
-
   container.appendChild(getForecastTable(forecast));
 };
