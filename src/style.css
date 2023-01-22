@@ -81,7 +81,7 @@ body {
   height: 650px;
 }
 
-.forecastTable {
+.forecast-table {
   display: grid;
   list-style: none;
   margin: 0;

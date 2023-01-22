@@ -60,46 +60,39 @@ const getWeather = (forecast, forecastData) => {
 const getForecastTable = (forecast) => {
   const forecastData = getWeather(forecast, getTemp(forecast));
 
-  const htmlList = document.createElement('ul');
-  htmlList.classList.add('forecastTable');
+  const htmlList = htmlCreateElement('ul', 'forecast-table');
 
   Object.keys(forecastData).forEach((day) => {
     const htmlListitem = document.createElement('li');
 
-    const htmlDay = document.createElement('div');
-    htmlDay.classList.add('day');
-    htmlDay.innerHTML = day;
+    const htmlDay = htmlCreateElement('div', 'day', day);
     htmlListitem.appendChild(htmlDay);
 
-    const htmlHoursContainer = document.createElement('div');
-    htmlHoursContainer.classList.add('houers-container');
+    const htmlHoursContainer = htmlCreateElement('div', 'houers-container');
 
     const temps = forecastData[day].temp;
     const weatherIcons = forecastData[day].weather;
     for (let h = 0; h <= 21; h += 3) {
-      const htmlhour = document.createElement('div');
+      const htmlhour = htmlCreateElement('div', 'hour');
 
-      const htmlIcon = document.createElement('div');
-      if (weatherIcons[h]) {
-        htmlIcon.innerHTML = iconLoader(weatherIcons[h]);
-      }
+      const htmlIcon = htmlCreateElement(
+        'div',
+        'icon',
+        weatherIcons[h] ? iconLoader(weatherIcons[h]) : '',
+      );
       htmlhour.appendChild(htmlIcon);
 
-      const htmltemp = document.createElement('h4');
-      htmltemp.classList.add('temp');
-      if (temps[h]) {
-        htmltemp.innerHTML = `${Math.round(temps[h])}°`;
-      }
+      const htmltemp = htmlCreateElement(
+        'h4',
+        'temp',
+        temps[h] ? `${Math.round(temps[h])}°` : '',
+      );
       htmlhour.appendChild(htmltemp);
-
       htmlHoursContainer.appendChild(htmlhour);
     }
-
     htmlListitem.appendChild(htmlHoursContainer);
-
     htmlList.appendChild(htmlListitem);
   });
-
   return htmlList;
 };
 
