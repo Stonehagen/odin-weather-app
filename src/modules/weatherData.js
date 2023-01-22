@@ -28,3 +28,33 @@ export default async (search) => {
 
   return data;
 };
+
+const getDayandTime = (dateTxt) => {
+  const weekdays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+  const date = new Date(dateTxt);
+  return [weekdays[date.getDay()], date.getHours()];
+};
+
+export const getTemp = (forecast) => {
+  const forecastData = {};
+  forecast.list.forEach((item) => {
+    const [day, hour] = getDayandTime(item.dt_txt);
+    if (!forecastData[day]) {
+      forecastData[day] = {
+        temp: {},
+        weather: {},
+      };
+    }
+    forecastData[day].temp[hour] = item.main.temp * 1;
+  });
+  return forecastData;
+};
+
+export const getWeather = (forecast, forecastData) => {
+  const forecastDataCopy = { ...forecastData };
+  forecast.list.forEach((item) => {
+    const [day, hour] = getDayandTime(item.dt_txt);
+    forecastDataCopy[day].weather[hour] = item.weather[0].icon;
+  });
+  return forecastDataCopy;
+};
