@@ -1,11 +1,13 @@
 import weatherData from './weatherData';
 import { loadForecast } from './displayManager';
 
-// eslint-disable-next-line import/prefer-default-export
-export const searchBtnEL = () => {
+export default () => {
   const htmlInput = document.querySelector('input');
   const htmlButton = document.querySelector('button');
   htmlButton.addEventListener('click', () => {
+    if (!htmlInput.value) {
+      return;
+    }
     weatherData(htmlInput.value).then((data) => {
       loadForecast(data);
     });

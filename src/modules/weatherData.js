@@ -3,9 +3,6 @@ import fetchData from './fetchData';
 
 const apiKey = '9229c5de8fb6d42d3ad5444e87f13b9e';
 
-// here a function for checking if search is legid
-const getLocation = (search) => search;
-
 const getCoordinates = async (location) => {
   const url =
     'http://api.openweathermap.org/geo/1.0/direct?' +
@@ -23,7 +20,7 @@ export default async (search) => {
     'http://api.openweathermap.org/data/2.5/forecast' +
     `?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
 
-  const latLon = await getCoordinates(getLocation(search));
+  const latLon = await getCoordinates(search);
   const data = await fetchData(url(latLon.lat, latLon.lon));
 
   return data;
