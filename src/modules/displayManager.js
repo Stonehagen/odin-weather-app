@@ -1,25 +1,29 @@
 import iconLoader from './iconLoader';
 
-export const loadPage = (container) => {
-  const htmlHeader = document.createElement('div');
-  htmlHeader.classList.add('header');
+const htmlCreateElement = (htmlElement, htmlClass, htmlInner = '') => {
+  const newHtmlElement = document.createElement(htmlElement);
+  newHtmlElement.classList.add(htmlClass);
+  newHtmlElement.innerHTML = htmlInner;
+  return newHtmlElement;
+};
 
-  const htmlHeading = document.createElement('h1');
-  htmlHeading.innerHTML = '<span>W</span>EATHER <span>A</span>PP';
+export const loadPage = (container) => {
+  const htmlHeader = htmlCreateElement('div', 'header');
+  const htmlHeading = htmlCreateElement(
+    'h1',
+    'main-heading',
+    '<span>W</span>EATHER <span>A</span>PP',
+  );
   htmlHeader.appendChild(htmlHeading);
 
-  const htmlInput = document.createElement('input');
-  htmlInput.classList.add('search');
+  const htmlInput = htmlCreateElement('input', 'search');
   htmlHeader.appendChild(htmlInput);
 
-  const htmlButton = document.createElement('button');
-  htmlButton.innerHTML = 'SEARCH';
+  const htmlButton = htmlCreateElement('button', 'search-btn', 'SEARCH');
   htmlHeader.appendChild(htmlButton);
-
-  const htmlForecast = document.createElement('div');
-  htmlForecast.classList.add('forecast');
-
   container.appendChild(htmlHeader);
+
+  const htmlForecast = htmlCreateElement('div', 'forecast');
   container.appendChild(htmlForecast);
 };
 
