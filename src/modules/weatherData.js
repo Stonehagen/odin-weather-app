@@ -5,7 +5,7 @@ const apiKey = '9229c5de8fb6d42d3ad5444e87f13b9e';
 
 const getCoordinates = async (location) => {
   const url =
-    'https://api.openweathermap.org/geo/1.0/direct?' +
+    'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/geo/1.0/direct?' +
     `q=${location}&limit=1&appid=${apiKey}`;
 
   const result = await fetchData(url);
@@ -20,7 +20,7 @@ const getCoordinates = async (location) => {
 export default async (search) => {
   const url = (lat, lon) =>
     // eslint-disable-next-line implicit-arrow-linebreak
-    'https://api.openweathermap.org/data/2.5/forecast' +
+    'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast' +
     `?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
 
   let latLon = await getCoordinates(search);
