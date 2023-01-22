@@ -55,13 +55,29 @@ const getForecastHours = (forecastData, day) => {
   return htmlHoursContainer;
 };
 
+const getForecastHeader = () => {
+  const header = htmlCreateElement('li', 'forecast-header');
+  const headerDay = htmlCreateElement('div', 'day', '');
+  header.appendChild(headerDay);
+  const headerHoursContainer = htmlCreateElement('div', 'houers-container');
+  for (let h = 0; h <= 21; h += 3) {
+    const headerHour = htmlCreateElement('div', 'hour', `${h}H`);
+    headerHoursContainer.appendChild(headerHour);
+  }
+  header.appendChild(headerHoursContainer);
+  return header;
+};
+
 const getForecastTable = (forecast) => {
   const forecastData = getWeather(forecast, getTemp(forecast));
 
   const htmlList = htmlCreateElement('ul', 'forecast-table');
 
+  const htmlForecastHeader = getForecastHeader();
+  htmlList.appendChild(htmlForecastHeader);
+
   Object.keys(forecastData).forEach((day) => {
-    const htmlListitem = document.createElement('li');
+    const htmlListitem = htmlCreateElement('li', 'list-item-day');
 
     const htmlDay = htmlCreateElement('div', 'day', day);
     htmlListitem.appendChild(htmlDay);
@@ -79,7 +95,7 @@ export const loadForecast = (forecast) => {
   const htmlForecastLocation = htmlCreateElement(
     'h2',
     'forecast-city',
-    forecast.city.name,
+    forecast.city.name === 'Globe' ? 'Not Found!' : forecast.city.name,
   );
   container.appendChild(htmlForecastLocation);
   container.appendChild(getForecastTable(forecast));

@@ -17,6 +17,9 @@ body {
   align-items: center;
 }
 
+path {
+  fill: var(--subtileBackground) !important;
+}
 
 #content {
   display: grid;
@@ -100,7 +103,20 @@ body {
   justify-items: center;
   align-items: center;
   padding-bottom: 20px;
-  border-bottom: 1px solid var(--subtilerBackground);
+  border-top: 1px solid var(--subtilerBackground);
+}
+
+.forecast-table .forecast-header {
+  border-top: none;
+  height: 25px;
+  padding-bottom: 0;
+}
+
+.forecast-table .forecast-header div {
+  font-size: 1.1em;
+  color: var(--higherHighlight);
+  height: 100%;
+  text-align: center;
 }
 
 .houers-container {
@@ -129,6 +145,6 @@ body {
 }
 
 .day {
-  font-size: 1.5em;
-  color: var(--subtileBackground);
+  font-size: 1.2em;
+  color: var(--higherHighlight);
 }

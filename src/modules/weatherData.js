@@ -9,6 +9,9 @@ const getCoordinates = async (location) => {
     `q=${location}&limit=1&appid=${apiKey}`;
 
   const result = await fetchData(url);
+  if (!result[0]) {
+    return false;
+  }
   const latLon = { lat: result[0].lat, lon: result[0].lon };
 
   return latLon;
@@ -20,7 +23,13 @@ export default async (search) => {
     'http://api.openweathermap.org/data/2.5/forecast' +
     `?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
 
-  const latLon = await getCoordinates(search);
+  let latLon = await getCoordinates(search);
+  if (!latLon) {
+    latLon = {
+      lat: 0,
+      lon: 0,
+    };
+  }
   const data = await fetchData(url(latLon.lat, latLon.lon));
 
   return data;
